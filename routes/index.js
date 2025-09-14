@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const userCont = require('../controllers/users');
+const contactCont = require('../controllers/contacts');
 
 
 
@@ -8,7 +8,7 @@ const userCont = require('../controllers/users');
 
 
 
-router.use('/users', require('./users'));
+router.use('/contacts', require('./contacts'));
 
 
 module.exports = router;
