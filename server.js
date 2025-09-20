@@ -1,6 +1,5 @@
-// Require statments
-// require('dotenv').config();
-const express = require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express()
 const mongodb = require('./database/connection')
@@ -11,8 +10,22 @@ const router = require('./routes/index')
 
 
 // Middleware
-app.use('/', router);
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accecpt, z-Key'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    next();
+});
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+app.use('/', router);
 
 
 // ------------------------------------------------
